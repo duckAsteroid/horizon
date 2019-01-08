@@ -1,3 +1,8 @@
+plugins {
+    id "com.jfrog.bintray" version "1.8.4"
+    id "org.sonarqube" version "2.7"
+}
+
 group = 'com.asteroid.duck'
 version = '0.0.1'
 description = 'Utility classes for publishing events and managing event handlers'
@@ -8,5 +13,49 @@ repositories {
 }
 dependencies {
     testCompile 'junit:junit:4.11' 
+}
+
+
+
+/* Add ability to publish JARs to Maven (e.g. bintray) */
+apply plugin: 'maven-publish'
+
+/** Create a source JAR for maven */
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+}
+
+
+/* Configuration to publish from travis to bintray */
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publications = ['mavenJava'] // reference above publication
+    publish = true // Whether version should be auto published after an upload    
+    override = true // Whether to override version artifacts already published
+    pkg {
+        name = 'horizon' // < - EDIT ME
+        repo = 'maven'
+        userOrg = 'duck-asteroid'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/duckAsteroid/horizon.git' // < - EDIT ME
+        version {
+            name = project.version
+            released = new Date()
+        }
+    }
 }
 

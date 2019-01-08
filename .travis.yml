@@ -1,0 +1,18 @@
+language: java
+branches:
+  only:
+  - master
+script:
+- ./gradlew --stacktrace sonarqube -Dsonar.organization=duckasteroid-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=913dc2f41588fe61c36d6641cb510b9cded7cb90
+- ./gradlew bintrayUpload
+cache:
+  directories:
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+env:
+  global:
+  # Sonar user
+  - secure: OXJP5YTchLqonoxHRvm9JQ0mi/dRTlIB9C8QcTQ4saAS2bwMLX5sV8Ip3+bvnNmew49vbJdxlsdQJ0l7/wRgzPLFwGvndthBOEFLevIQceH3vazLpTTUIRm2Lc/sxijeeROgbduV+DvukBuPD118shzomv+qm1+ULSV0N35tmXwyVUrWcOP0S2x6Ws3hESDH3rH+JCrQr9tcLrpmYu7XozmOfJZ6zYGWAIQWjCQkpm5/6xnRkCLWGJS/6AyZrJjGnizST48pAUciJpaA7Dqykc8ikujtEIZLRobkhKqLkL+cwxBUzrc/IFjpazRbXwwQlG69ccD8+3pcEdTOXP/KnbIh70PxoKNsJhgNLvP0ZC06zFN9KEYFaNwxl4rjbT6sGvZFyT160N0DHijHxbU0JG/7S8wCBbauB8/9BVL4FZg5jrHrcG1MvMc0dZdIxcXW5dTUNvFoet3ude2aPYVtkgvm7sJtgZQVNQcPFZRa2ruVhsXh5zN1CXvPD/FYfws656o/0acn81guHz6jenr+UzlYZU+gCOqD7/7zNF5l0JLqU1DRLDXJPOIcjEOzKw/ijg9wPgcY1wt0MgcX7FRegorP1Ak/LaK9LtvImI+Gmj70D/Fip0hHI8+/ZCHQ5i3akdw2yxATO9miSFVGeU2V8DKjXNkSCisgwZ4OsMkKxy0=
+  # Sonar Key
+  - secure: XR/3SVieNipIdYx/0eaumVy64Gx6I58Y62+ITUBRi4N4Ob0kDxVCczTpUmEmsd2kJ7UoTDUH0idXJd2x3Ac+iVvmceqO3gKTCSe48u8BNH6oAAP8o1jcRQ9LxuRC/TdCtqzx9Ymb6ZNN44i/LuAetNEP8QyAaVIwjQuCEAiX+YYxKW8YsBVK8aPBdtiD/9qDhYejNm6jrtYfHtMs3xX40u4W2E/qBjJKtMCJ1iXMiNWwjjA3IPebzdRDFJm29gBywHV+Wa9ArXuYVMXcXZ+LB0GNrqOef7XBpAG/ut2lrdaSsDE9JOBZX0X9vZ2An2Xu8IriKZjldQYXabB4pTeoUGUfCYq46lzGLTbUtZc4ANfWMI/LX0hENLSdirAciYi/lyTMQ2fx+Zd6PF6RlEVaB/qs5oSzWNlIWd+CsL0Fquh2+Q1QZvdX6dul7poXHof20JHWAubZrG1tUnINJIv+A9MH+jHPSlIuZvMxVbmZUidTIAR2WFHm907zT0PzRBHOb6BQtAOWUNiXBTPimeCIdxawjbvQkGeHBQttnS59ZBhRkzlrmA6VCZ2+OPkLTH9OxXpUZKTWu9VCyVRdprWhuCZb5htUsIN4sdyZySvu6TVGm8YPCF5hbmrYO2QJaWyKuMthz/BEVfIOVMjmDh+WVuBIdsJoptuhBlCpeE/VAjg=
+
