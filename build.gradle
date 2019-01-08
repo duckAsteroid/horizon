@@ -1,0 +1,12 @@
+group = 'com.asteroid.duck'
+version = '0.0.1'
+description = 'Utility classes for publishing events and managing event handlers'
+
+apply plugin: 'java'
+repositories {
+    mavenCentral()
+}
+dependencies {
+    testCompile 'junit:junit:4.11' 
+}
+
